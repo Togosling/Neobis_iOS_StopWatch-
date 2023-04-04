@@ -13,9 +13,12 @@
 		DCC51A3629DBED3900223FBE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DCC51A3429DBED3900223FBE /* Main.storyboard */; };
 		DCC51A3829DBED3B00223FBE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DCC51A3729DBED3B00223FBE /* Assets.xcassets */; };
 		DCC51A3B29DBED3B00223FBE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DCC51A3929DBED3B00223FBE /* LaunchScreen.storyboard */; };
+		F6335DA3CBA6EBEB3D0EEA74 /* Pods_Neobis_iOS_StopWatch.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F6BC89B35AE7212D4DB65633 /* Pods_Neobis_iOS_StopWatch.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		918512542285122E9610B154 /* Pods-Neobis_iOS_StopWatch.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Neobis_iOS_StopWatch.release.xcconfig"; path = "Target Support Files/Pods-Neobis_iOS_StopWatch/Pods-Neobis_iOS_StopWatch.release.xcconfig"; sourceTree = "<group>"; };
+		949DC53EED58674811E571AC /* Pods-Neobis_iOS_StopWatch.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Neobis_iOS_StopWatch.debug.xcconfig"; path = "Target Support Files/Pods-Neobis_iOS_StopWatch/Pods-Neobis_iOS_StopWatch.debug.xcconfig"; sourceTree = "<group>"; };
 		DCC51A2B29DBED3900223FBE /* Neobis_iOS_StopWatch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Neobis_iOS_StopWatch.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DCC51A2E29DBED3900223FBE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DCC51A3029DBED3900223FBE /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -24,6 +27,7 @@
 		DCC51A3729DBED3B00223FBE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		DCC51A3A29DBED3B00223FBE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		DCC51A3C29DBED3B00223FBE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F6BC89B35AE7212D4DB65633 /* Pods_Neobis_iOS_StopWatch.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Neobis_iOS_StopWatch.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -31,17 +35,38 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F6335DA3CBA6EBEB3D0EEA74 /* Pods_Neobis_iOS_StopWatch.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		403B3E8A1AE8009C6B909EF8 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				949DC53EED58674811E571AC /* Pods-Neobis_iOS_StopWatch.debug.xcconfig */,
+				918512542285122E9610B154 /* Pods-Neobis_iOS_StopWatch.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		82F2B93EAEE709ABB5ACA890 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				F6BC89B35AE7212D4DB65633 /* Pods_Neobis_iOS_StopWatch.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		DCC51A2229DBED3800223FBE = {
 			isa = PBXGroup;
 			children = (
 				DCC51A2D29DBED3900223FBE /* Neobis_iOS_StopWatch */,
 				DCC51A2C29DBED3900223FBE /* Products */,
+				403B3E8A1AE8009C6B909EF8 /* Pods */,
+				82F2B93EAEE709ABB5ACA890 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -74,9 +99,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = DCC51A3F29DBED3B00223FBE /* Build configuration list for PBXNativeTarget "Neobis_iOS_StopWatch" */;
 			buildPhases = (
+				5533B77E16F7B9D66A876489 /* [CP] Check Pods Manifest.lock */,
 				DCC51A2729DBED3800223FBE /* Sources */,
 				DCC51A2829DBED3800223FBE /* Frameworks */,
 				DCC51A2929DBED3800223FBE /* Resources */,
+				0008FF78D245D52650D68DFB /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -132,6 +159,48 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		0008FF78D245D52650D68DFB /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Neobis_iOS_StopWatch/Pods-Neobis_iOS_StopWatch-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Neobis_iOS_StopWatch/Pods-Neobis_iOS_StopWatch-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Neobis_iOS_StopWatch/Pods-Neobis_iOS_StopWatch-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		5533B77E16F7B9D66A876489 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Neobis_iOS_StopWatch-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		DCC51A2729DBED3800223FBE /* Sources */ = {
@@ -282,6 +351,7 @@
 		};
 		DCC51A4029DBED3B00223FBE /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 949DC53EED58674811E571AC /* Pods-Neobis_iOS_StopWatch.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -309,6 +379,7 @@
 		};
 		DCC51A4129DBED3B00223FBE /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 918512542285122E9610B154 /* Pods-Neobis_iOS_StopWatch.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
