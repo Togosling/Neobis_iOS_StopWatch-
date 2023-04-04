@@ -161,6 +161,8 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
             pickerView.selectRow(0, inComponent: 2, animated: true)
             timeLabel.text = "00:00:00"
             pickerView.isHidden = true
+            count = 0
+            chosenTime = 0
         case 1:
             imageView.image = UIImage(named: "chronograph-watch")
             startButton.setImage(UIImage(named: "video"), for: .normal)
