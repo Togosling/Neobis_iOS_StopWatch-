@@ -123,25 +123,7 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
         let minutes = pickerView.selectedRow(inComponent: 1)
         let seconds = pickerView.selectedRow(inComponent: 2)
         chosenTime = hours * 3600 + minutes * 60 + seconds
-        var stringHours = ""
-        var stringMinutes = ""
-        var stringSeconds = ""
-        if seconds < 10 {
-            stringSeconds = String(format: "0%1d", seconds)
-        } else {
-            stringSeconds = String(seconds)
-        }
-        if minutes < 10 {
-            stringMinutes = String(format: "0%1d", minutes)
-        } else {
-            stringMinutes = String(minutes)
-        }
-        if hours < 10 {
-            stringHours = String(format: "0%1d", hours)
-        } else {
-            stringHours = String(hours)
-        }
-        timeLabel.text = "\(stringHours):\(stringMinutes):\(stringSeconds)"
+        timeLabel.text = "\(String(format:"%02d", hours)):\(String(format:"%02d", minutes)):\(String(format: "%02d", seconds))"
     }
     
     
@@ -271,12 +253,8 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
     @objc func handleRegularTimer() {
         count += 1
         let time = secondToHoursMinutesToSeconds(seconds: count)
-        if count < 10 {
-            timeLabel.text = "\(String(format:"0%1d", time.0)):\(String(format:"0%1d", time.1)):\(String(format:"0%1d", time.2))"
-            
-        } else  {
-            timeLabel.text = "\(String(format:"0%1d", time.0)):\(String(format:"0%1d", time.1)):\(String(time.2))"
-        }
+        timeLabel.text = "\(String(format:"%02d", time.0)):\(String(format:"%02d", time.1)):\(String(format: "%02d", time.2))"
+
     }
     
     func secondToHoursMinutesToSeconds(seconds: Int) -> (Int,Int,Int) {
@@ -292,25 +270,7 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
     @objc func handleBackTimer() {
         chosenTime -= 1
         let time = secondToHoursMinutesToSeconds(seconds: chosenTime)
-        var stringHours = ""
-        var stringMinutes = ""
-        var stringSeconds = ""
-        if time.2 < 10 {
-            stringSeconds = String(format: "0%1d", time.2)
-        } else {
-            stringSeconds = String(time.2)
-        }
-        if time.1 < 10 {
-            stringMinutes = String(format: "0%1d", time.1)
-        } else {
-            stringMinutes = String(time.1)
-        }
-        if time.0 < 10 {
-            stringHours = String(format: "0%1d", time.0)
-        } else {
-            stringHours = String(time.0)
-        }
-        timeLabel.text = "\(stringHours):\(stringMinutes):\(stringSeconds)"
+        timeLabel.text = "\(String(format:"%02d", time.0)):\(String(format:"%02d", time.1)):\(String(format: "%02d", time.2))"
         if chosenTime == 0 {
             backTimer.invalidate()
             pickerView.isHidden = false
