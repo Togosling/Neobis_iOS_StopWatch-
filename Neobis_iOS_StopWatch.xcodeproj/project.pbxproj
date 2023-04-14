@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		DCBA41C229E928610051F2A8 /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCBA41C129E928610051F2A8 /* Helper.swift */; };
+		DCBA41CF29E9415D0051F2A8 /* View.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCBA41CE29E9415D0051F2A8 /* View.swift */; };
 		DCC51A2F29DBED3900223FBE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCC51A2E29DBED3900223FBE /* AppDelegate.swift */; };
 		DCC51A3129DBED3900223FBE /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCC51A3029DBED3900223FBE /* SceneDelegate.swift */; };
 		DCC51A3329DBED3900223FBE /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCC51A3229DBED3900223FBE /* ViewController.swift */; };
@@ -21,6 +22,7 @@
 		918512542285122E9610B154 /* Pods-Neobis_iOS_StopWatch.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Neobis_iOS_StopWatch.release.xcconfig"; path = "Target Support Files/Pods-Neobis_iOS_StopWatch/Pods-Neobis_iOS_StopWatch.release.xcconfig"; sourceTree = "<group>"; };
 		949DC53EED58674811E571AC /* Pods-Neobis_iOS_StopWatch.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Neobis_iOS_StopWatch.debug.xcconfig"; path = "Target Support Files/Pods-Neobis_iOS_StopWatch/Pods-Neobis_iOS_StopWatch.debug.xcconfig"; sourceTree = "<group>"; };
 		DCBA41C129E928610051F2A8 /* Helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
+		DCBA41CE29E9415D0051F2A8 /* View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = View.swift; sourceTree = "<group>"; };
 		DCC51A2B29DBED3900223FBE /* Neobis_iOS_StopWatch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Neobis_iOS_StopWatch.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DCC51A2E29DBED3900223FBE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DCC51A3029DBED3900223FBE /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -86,6 +88,14 @@
 			path = Helpers;
 			sourceTree = "<group>";
 		};
+		DCBA41D029E941660051F2A8 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				DCBA41CE29E9415D0051F2A8 /* View.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		DCC51A2229DBED3800223FBE = {
 			isa = PBXGroup;
 			children = (
@@ -107,6 +117,7 @@
 		DCC51A2D29DBED3900223FBE /* Neobis_iOS_StopWatch */ = {
 			isa = PBXGroup;
 			children = (
+				DCBA41D029E941660051F2A8 /* View */,
 				DCBA41C029E9284F0051F2A8 /* Controller */,
 				DCBA41C329E928690051F2A8 /* Helpers */,
 				DCBA41BF29E928340051F2A8 /* Delegate */,
@@ -235,6 +246,7 @@
 			files = (
 				DCC51A3329DBED3900223FBE /* ViewController.swift in Sources */,
 				DCC51A2F29DBED3900223FBE /* AppDelegate.swift in Sources */,
+				DCBA41CF29E9415D0051F2A8 /* View.swift in Sources */,
 				DCC51A3129DBED3900223FBE /* SceneDelegate.swift in Sources */,
 				DCBA41C229E928610051F2A8 /* Helper.swift in Sources */,
 			);

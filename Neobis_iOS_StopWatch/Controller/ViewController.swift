@@ -10,90 +10,24 @@ import SnapKit
 
 class ViewController: UIViewController {
     
-    //MARK: UIViews
-    
-    let imageView: UIImageView = {
-        let iv = UIImageView()
-        iv.image = UIImage(named: "stopwatch")
-        return iv
-    }()
-    
-    let segmentedControl: UISegmentedControl = {
-        let sgm = UISegmentedControl(items: ["Timer","StopWatch"])
-        sgm.selectedSegmentIndex = 0
-        return sgm
-    }()
-    
-    let timeLabel: UILabel = {
-        let label = UILabel()
-        label.text = "00:00:00"
-        label.font = .boldSystemFont(ofSize: 64)
-        return label
-    }()
-    
-    let pickerView: UIPickerView = {
-        let pv = UIPickerView()
-        pv.isHidden = true
-        return pv
-    }()
-    
-    let stopButton: UIButton = {
-        let button = UIButton(type: .system)
-        button.setImage(UIImage(named: "stop-button"), for: .normal)
-        button.tintColor = .black
-        button.snp.makeConstraints { make in
-            make.width.equalTo(64)
-            make.height.equalTo(64)
-        }
-        return button
-        
-    }()
-    
-    let pauseButton: UIButton = {
-        let button = UIButton(type: .system)
-        button.setImage(UIImage(named: "pause"), for: .normal)
-        button.tintColor = .black
-        button.snp.makeConstraints { make in
-            make.width.equalTo(64)
-            make.height.equalTo(64)
-        }
-        return button
-        
-    }()
-    
-    let startButton: UIButton = {
-        let button = UIButton(type: .system)
-        button.setImage(UIImage(named: "video"), for: .normal)
-        button.tintColor = .black
-        button.snp.makeConstraints { make in
-            make.width.equalTo(64)
-            make.height.equalTo(64)
-        }
-        return button
-        
-    }()
-    
+    let mainView = MainView(frame: .zero)
     var chosenTime = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        view.backgroundColor = UIColor(red: 254/255, green: 204/255, blue: 2/255, alpha: 1)
-        
-        setupContsraints()
+        setupView()
         addTargets()
-        
-        pickerView.dataSource = self
-        pickerView.delegate = self
+        mainView.pickerView.dataSource = self
+        mainView.pickerView.delegate = self
     }
     
     //MARK: Targets
     
     fileprivate func addTargets() {
-        segmentedControl.addTarget(self, action: #selector(handleSegmentedValueChange), for: .valueChanged)
-        startButton.addTarget(self, action: #selector(startButtonsPressed), for: .touchUpInside)
-        pauseButton.addTarget(self, action: #selector(pauseButtonsPressed), for: .touchUpInside)
-        stopButton.addTarget(self, action: #selector(stopButtonsPressed), for: .touchUpInside)
+        mainView.segmentedControl.addTarget(self, action: #selector(handleSegmentedValueChange), for: .valueChanged)
+        mainView.startButton.addTarget(self, action: #selector(startButtonsPressed), for: .touchUpInside)
+        mainView.pauseButton.addTarget(self, action: #selector(pauseButtonsPressed), for: .touchUpInside)
+        mainView.stopButton.addTarget(self, action: #selector(stopButtonsPressed), for: .touchUpInside)
     }
         
     //MARK: SegmentedControll
@@ -101,51 +35,51 @@ class ViewController: UIViewController {
     @objc func handleSegmentedValueChange(sender: UISegmentedControl) {
         switch sender.selectedSegmentIndex {
         case 0:
-            imageView.image = UIImage(named: "stopwatch")
-            pickerView.selectRow(0, inComponent: 0, animated: true)
-            pickerView.selectRow(0, inComponent: 1, animated: true)
-            pickerView.selectRow(0, inComponent: 2, animated: true)
-            pickerView.isHidden = true
+            mainView.imageView.image = UIImage(named: "stopwatch")
+            mainView.pickerView.selectRow(0, inComponent: 0, animated: true)
+            mainView.pickerView.selectRow(0, inComponent: 1, animated: true)
+            mainView.pickerView.selectRow(0, inComponent: 2, animated: true)
+            mainView.pickerView.isHidden = true
             SetViewsToDefault()
             count = 0
             chosenTime = 0
         case 1:
-            imageView.image = UIImage(named: "chronograph-watch")
-            pickerView.isHidden = false
+            mainView.imageView.image = UIImage(named: "chronograph-watch")
+            mainView.pickerView.isHidden = false
             SetViewsToDefault()
         default: break
         }
     }
     
     fileprivate func SetViewsToDefault() {
-        startButton.setImage(UIImage(named: "video"), for: .normal)
-        pauseButton.setImage(UIImage(named: "pause"), for: .normal)
-        stopButton.setImage(UIImage(named: "stop-button"), for: .normal)
+        mainView.startButton.setImage(UIImage(named: "video"), for: .normal)
+        mainView.pauseButton.setImage(UIImage(named: "pause"), for: .normal)
+        mainView.stopButton.setImage(UIImage(named: "stop-button"), for: .normal)
         regularTimer.invalidate()
         backTimer.invalidate()
-        timeLabel.text = "00:00:00"
+        mainView.timeLabel.text = "00:00:00"
     }
     
     //MARK: Logic of Buttons with Timers
     
     @objc func startButtonsPressed() {
         
-        if segmentedControl.selectedSegmentIndex == 0 {
-            if startButton.currentImage == UIImage(named: "video") {
+        if mainView.segmentedControl.selectedSegmentIndex == 0 {
+            if mainView.startButton.currentImage == UIImage(named: "video") {
                 createRegularTimer()
                 startButtonPressedFirst()
             } else {
-                startButton.setImage(UIImage(named: "video"), for: .normal)
+                mainView.startButton.setImage(UIImage(named: "video"), for: .normal)
                 regularTimer.invalidate()
             }
         } else {
-            if startButton.currentImage == UIImage(named: "video") {
-                pickerView.isHidden = true
+            if mainView.startButton.currentImage == UIImage(named: "video") {
+                mainView.pickerView.isHidden = true
                 createBackTimer()
                 startButtonPressedFirst()
             } else {
-                startButton.setImage(UIImage(named: "video"), for: .normal)
-                pickerView.isHidden = false
+                mainView.startButton.setImage(UIImage(named: "video"), for: .normal)
+                mainView.pickerView.isHidden = false
                 backTimer.invalidate()
             }
             
@@ -153,64 +87,64 @@ class ViewController: UIViewController {
     }
     
     @objc func pauseButtonsPressed() {
-        if segmentedControl.selectedSegmentIndex == 0 {
-            if pauseButton.currentImage == UIImage(named: "pause") {
+        if mainView.segmentedControl.selectedSegmentIndex == 0 {
+            if mainView.pauseButton.currentImage == UIImage(named: "pause") {
                 regularTimer.invalidate()
                 pauseButtonPressedFirst()
             } else {
-                pauseButton.setImage(UIImage(named: "pause"), for: .normal)
+                mainView.pauseButton.setImage(UIImage(named: "pause"), for: .normal)
             }
         } else {
-            if pauseButton.currentImage == UIImage(named: "pause") {
+            if mainView.pauseButton.currentImage == UIImage(named: "pause") {
                 backTimer.invalidate()
-                pickerView.isHidden = false
+                mainView.pickerView.isHidden = false
                 pauseButtonPressedFirst()
             } else {
-                pauseButton.setImage(UIImage(named: "pause"), for: .normal)
+                mainView.pauseButton.setImage(UIImage(named: "pause"), for: .normal)
             }
         }
     }
     
     @objc func stopButtonsPressed() {
         
-        if segmentedControl.selectedSegmentIndex == 0 {
-            if stopButton.currentImage == UIImage(named: "stop-button") {
+        if mainView.segmentedControl.selectedSegmentIndex == 0 {
+            if mainView.stopButton.currentImage == UIImage(named: "stop-button") {
                 regularTimer.invalidate()
                 count = 0
                 stopButtonPressedFirst()
             } else {
-                stopButton.setImage(UIImage(named: "stop-button"), for: .normal)
+                mainView.stopButton.setImage(UIImage(named: "stop-button"), for: .normal)
             }
         } else {
-            if stopButton.currentImage == UIImage(named: "stop-button") {
-                pickerView.isHidden = false
-                pickerView.selectRow(0, inComponent: 0, animated: true)
-                pickerView.selectRow(0, inComponent: 1, animated: true)
-                pickerView.selectRow(0, inComponent: 2, animated: true)
+            if mainView.stopButton.currentImage == UIImage(named: "stop-button") {
+                mainView.pickerView.isHidden = false
+                mainView.pickerView.selectRow(0, inComponent: 0, animated: true)
+                mainView.pickerView.selectRow(0, inComponent: 1, animated: true)
+                mainView.pickerView.selectRow(0, inComponent: 2, animated: true)
                 backTimer.invalidate()
                 chosenTime = 0
                 stopButtonPressedFirst()
             } else {
-                stopButton.setImage(UIImage(named: "stop-button"), for: .normal)
+                mainView.stopButton.setImage(UIImage(named: "stop-button"), for: .normal)
             }
         }
     }
     
     fileprivate func startButtonPressedFirst() {
-        startButton.setImage(UIImage(named: "video-pressed"), for: .normal)
-        pauseButton.setImage(UIImage(named: "pause"), for: .normal)
-        stopButton.setImage(UIImage(named: "stop-button"), for: .normal)
+        mainView.startButton.setImage(UIImage(named: "video-pressed"), for: .normal)
+        mainView.pauseButton.setImage(UIImage(named: "pause"), for: .normal)
+        mainView.stopButton.setImage(UIImage(named: "stop-button"), for: .normal)
     }
     fileprivate func pauseButtonPressedFirst() {
-        pauseButton.setImage(UIImage(named: "pause-pressed"), for: .normal)
-        startButton.setImage(UIImage(named: "video"), for: .normal)
-        stopButton.setImage(UIImage(named: "stop-button"), for: .normal)
+        mainView.pauseButton.setImage(UIImage(named: "pause-pressed"), for: .normal)
+        mainView.startButton.setImage(UIImage(named: "video"), for: .normal)
+        mainView.stopButton.setImage(UIImage(named: "stop-button"), for: .normal)
     }
     fileprivate func stopButtonPressedFirst() {
-        stopButton.setImage(UIImage(named: "stop-button-pressed"), for: .normal)
-        pauseButton.setImage(UIImage(named: "pause"), for: .normal)
-        startButton.setImage(UIImage(named: "video"), for: .normal)
-        timeLabel.text = "00:00:00"
+        mainView.stopButton.setImage(UIImage(named: "stop-button-pressed"), for: .normal)
+        mainView.pauseButton.setImage(UIImage(named: "pause"), for: .normal)
+        mainView.startButton.setImage(UIImage(named: "video"), for: .normal)
+        mainView.timeLabel.text = "00:00:00"
     }
     
     //MARK: Timers
@@ -226,7 +160,7 @@ class ViewController: UIViewController {
     @objc func handleRegularTimer() {
         count += 1
         let time = secondToHoursMinutesToSeconds(seconds: count)
-        timeLabel.text = "\(String(format:"%02d", time.0)):\(String(format:"%02d", time.1)):\(String(format: "%02d", time.2))"
+        mainView.timeLabel.text = "\(String(format:"%02d", time.0)):\(String(format:"%02d", time.1)):\(String(format: "%02d", time.2))"
 
     }
     
@@ -243,66 +177,18 @@ class ViewController: UIViewController {
     @objc func handleBackTimer() {
         chosenTime -= 1
         let time = secondToHoursMinutesToSeconds(seconds: chosenTime)
-        timeLabel.text = "\(String(format:"%02d", time.0)):\(String(format:"%02d", time.1)):\(String(format: "%02d", time.2))"
+        mainView.timeLabel.text = "\(String(format:"%02d", time.0)):\(String(format:"%02d", time.1)):\(String(format: "%02d", time.2))"
         if chosenTime == 0 {
             backTimer.invalidate()
-            pickerView.isHidden = false
-            pickerView.selectRow(0, inComponent: 0, animated: true)
-            pickerView.selectRow(0, inComponent: 1, animated: true)
-            pickerView.selectRow(0, inComponent: 2, animated: true)
-            pauseButton.setImage(UIImage(named: "pause"), for: .normal)
-            startButton.setImage(UIImage(named: "video"), for: .normal)
-            stopButton.setImage(UIImage(named: "stop-button"), for: .normal)
+            mainView.pickerView.isHidden = false
+            mainView.pickerView.selectRow(0, inComponent: 0, animated: true)
+            mainView.pickerView.selectRow(0, inComponent: 1, animated: true)
+            mainView.pickerView.selectRow(0, inComponent: 2, animated: true)
+            mainView.pauseButton.setImage(UIImage(named: "pause"), for: .normal)
+            mainView.startButton.setImage(UIImage(named: "video"), for: .normal)
+            mainView.stopButton.setImage(UIImage(named: "stop-button"), for: .normal)
         }
     }
-    
-
-    
-    //MARK: SettingUp View Constraints
-    
-    fileprivate func setupContsraints() {
-                
-        view.addSubview(imageView)
-        imageView.snp.makeConstraints { make in
-            make.centerX.equalToSuperview()
-            make.top.equalToSuperview().offset(flexibleHeight(to: 92))
-            make.width.equalTo(flexibleWidth(to: 150))
-            make.height.equalTo(flexibleHeight(to: 150))
-        }
-        
-        view.addSubview(segmentedControl)
-        segmentedControl.snp.makeConstraints { make in
-            make.centerX.equalToSuperview()
-            make.top.equalTo(imageView.snp.bottom).offset(flexibleHeight(to: 16))
-            make.width.equalTo(flexibleWidth(to: 200))
-            make.height.equalTo(flexibleHeight(to: 50))
-        }
-        
-        view.addSubview(timeLabel)
-        timeLabel.snp.makeConstraints { make in
-            make.centerX.equalToSuperview()
-            make.top.equalTo(segmentedControl.snp.bottom).offset(flexibleHeight(to: 32))
-        }
-        
-        view.addSubview(pickerView)
-        pickerView.snp.makeConstraints { make in
-            make.centerX.equalToSuperview()
-            make.top.equalTo(timeLabel.snp.bottom).offset(flexibleHeight(to: 32))
-        }
-        
-        let buttonsStackView = UIStackView(arrangedSubviews: [stopButton,pauseButton,startButton])
-        buttonsStackView.axis = .horizontal
-        buttonsStackView.spacing = 32
-        
-        view.addSubview(buttonsStackView)
-        buttonsStackView.snp.makeConstraints { make in
-            make.centerX.equalToSuperview()
-            make.bottom.equalToSuperview().inset(flexibleHeight(to: 150))
-        }
-
-    }
-
-
 }
 
 //MARK: PickerView
@@ -331,11 +217,18 @@ extension ViewController:  UIPickerViewDataSource, UIPickerViewDelegate {
     }
     
     func updateTimeLabel() {
-        let hours = pickerView.selectedRow(inComponent: 0)
-        let minutes = pickerView.selectedRow(inComponent: 1)
-        let seconds = pickerView.selectedRow(inComponent: 2)
+        let hours = mainView.pickerView.selectedRow(inComponent: 0)
+        let minutes =  mainView.pickerView.selectedRow(inComponent: 1)
+        let seconds =  mainView.pickerView.selectedRow(inComponent: 2)
         chosenTime = hours * 3600 + minutes * 60 + seconds
-        timeLabel.text = "\(String(format:"%02d", hours)):\(String(format:"%02d", minutes)):\(String(format: "%02d", seconds))"
+        mainView.timeLabel.text = "\(String(format:"%02d", hours)):\(String(format:"%02d", minutes)):\(String(format: "%02d", seconds))"
+    }
+    
+    fileprivate func setupView() {
+        view.addSubview(mainView)
+        mainView.snp.makeConstraints { make in
+            make.size.equalToSuperview()
+        }
     }
     
 }
